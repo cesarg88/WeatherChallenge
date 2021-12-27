@@ -8,9 +8,72 @@
 import XCTest
 import WeatherChallenge
 
+//final class RemoteWeatherLoader {
+//    private let url: URL
+//    private let client: HTTPClient
+//
+//    public enum Error: Swift.Error {
+//        case connectivity, invalidData
+//    }
+//
+//    init(url: URL, client: HTTPClient) {
+//        self.url = url
+//        self.client = client
+//    }
+//
+//    private static func map(_ data: Data, from response: HTTPURLResponse) -> WeatherLoader.Result {
+//        do {
+//            let remoteWeather = try WeatherMapper.map(data, from: response)
+//            return .success(remoteWeather.toModel())
+//        } catch {
+//            return .failure(error)
+//        }
+//    }
+//
+//    public func load(completion: @escaping (WeatherLoader.Result) -> Void) {
+//        client.get(from: url) { result in }
+//    }
+//}
+
+private extension RemoteWeather {
+    func toModel() -> Weather {
+        return Weather(latitude: self.coord.lat,
+                       longitude: self.coord.lon,
+                       cityName: self.name,
+                       temperature: self.main.temp,
+                       description: self.weather.first?.weatherDescription,
+                       iconName: self.weather.first?.icon)
+    }
+}
+
+final class WeatherMapper {
+    
+    public enum Error: Swift.Error {
+        case connectivity, invalidData
+    }
+    
+    private struct Root: Decodable {
+        let weather: RemoteWeather
+    }
+    
+    private static var OK_200: Int { 200 }
+    
+    internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteWeather {
+        guard response.statusCode == OK_200,
+              let root = try? JSONDecoder().decode(Root.self, from: data)
+        else { throw Error.invalidData }
+        return root.weather
+    }
+}
+
+
 final class RemoteWeatherLoader {
     private let url: URL
     private let client: HTTPClient
+    
+    public enum Error: Swift.Error {
+        case connectivity, invalidData
+    }
   
     init(url: URL, client: HTTPClient) {
         self.url = url
@@ -18,7 +81,13 @@ final class RemoteWeatherLoader {
     }
     
     public func load(completion: @escaping (WeatherLoader.Result) -> Void) {
-        client.get(from: url) { result in }
+        client.get(from: url) { result in
+            switch result {
+                case .success((_,_)): break
+                case let .failure:
+                    completion(.failure(Error.connectivity))
+            }
+        }
     }
 }
 
@@ -37,6 +106,17 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         sut.load { _ in }
         XCTAssertEqual(client.requestedURLs, [url, url])
     }
+    
+    func test_load_deliversErrorOnClientError() {
+        let (sut, client) = makeSUT()
+        
+        expect(sut,
+               toCompleteWith: failure(.connectivity),
+               when: {
+                let clientError = NSError(domain: "test", code: 0, userInfo: nil)
+                client.complete(with: clientError)
+               })
+    }
 
     
     // MARK: - Helpers
@@ -50,6 +130,36 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         trackForMemoryLeaks(client, file: file, line: line)
         return (sut: sut,
                 client: client)
+    }
+    
+    //file and line params are used to report the error on the correct line
+    private func expect(_ sut: RemoteWeatherLoader,
+                        toCompleteWith expectedResult: WeatherLoader.Result,
+                        when action: () -> Void,
+                        file: StaticString = #filePath,
+                        line: UInt = #line) {
+        
+        let exp = expectation(description: "Wait for load completion")
+        
+        sut.load { receivedResult in
+            switch (receivedResult, expectedResult) {
+            case let (.success(receivedItems), .success(expectedItems)):
+                XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
+            case let (.failure(receivedError as RemoteWeatherLoader.Error), .failure(expectedError as RemoteWeatherLoader.Error)):
+                XCTAssertEqual(receivedError, expectedError, file: file, line: line)
+            default:
+                XCTFail("Expected result")
+            }
+            
+            exp.fulfill()
+        }
+        
+        action()
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    private func failure( _ error: RemoteWeatherLoader.Error) -> WeatherLoader.Result {
+        return .failure(error)
     }
     
     private class HTTPClientSpy: HTTPClient {

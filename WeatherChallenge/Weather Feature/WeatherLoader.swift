@@ -12,7 +12,7 @@ public protocol WeatherLoader {
     func load(completion: @escaping (Result) -> Void)
 }
 
-public struct Weather {
+public struct Weather: Equatable {
     let latitude: Double
     let longitude: Double
     let cityName: String
