@@ -2,7 +2,7 @@
 //  LoadWeatherFromRemoteUseCaseTests.swift
 //  WeatherChallengeTests
 //
-//  Created by César González Palomino on 27/12/21.
+//  Created by César González on 27/12/21.
 //
 
 import XCTest
@@ -11,10 +11,14 @@ import WeatherChallenge
 final class RemoteWeatherLoader {
     private let url: URL
     private let client: HTTPClient
-    
+  
     init(url: URL, client: HTTPClient) {
         self.url = url
         self.client = client
+    }
+    
+    public func load(completion: @escaping (WeatherLoader.Result) -> Void) {
+        client.get(from: url) { result in }
     }
 }
 
@@ -24,6 +28,14 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         let (_, client) = makeSUT()
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
+    }
+    
+    func test_loadTwice_requestDataFromURL() {
+        let url = URL(string: "https://a-given-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        sut.load { _ in }
+        sut.load { _ in }
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
 
     
