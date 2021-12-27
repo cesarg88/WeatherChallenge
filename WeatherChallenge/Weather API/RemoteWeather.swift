@@ -28,11 +28,11 @@ public struct Main: Codable {
 // MARK: - Weather
 public struct WeatherItem: Codable {
     public let id: Int
-    public let main, weatherDescription, icon: String
+    public let weatherDescription, icon: String
 
     enum CodingKeys: String, CodingKey {
-        case id, main
+        case id
         case weatherDescription = "description"
-        case icon
+        case icon = "main"
     }
 }

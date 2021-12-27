@@ -114,8 +114,8 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
                           longitude: Double = 2.34,
                           cityName: String = "madrid",
                           temperature: Double = 0.0,
-                          description: String = "cloudly",
-                          iconName: String = "1d3") -> (model: Weather, json: [String: Any]) {
+                          description: String = "sunny",
+                          iconName: String = "sunny") -> (model: Weather, json: [String: Any]) {
         let item = Weather(latitude: latitude,
                            longitude: longitude,
                            cityName: cityName,
