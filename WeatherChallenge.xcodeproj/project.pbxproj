@@ -10,6 +10,7 @@
 		3390902D2779E099007D2864 /* WeatherChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339090242779E098007D2864 /* WeatherChallenge.framework */; };
 		339090322779E099007D2864 /* WeatherChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090312779E099007D2864 /* WeatherChallengeTests.swift */; };
 		339090332779E099007D2864 /* WeatherChallenge.h in Headers */ = {isa = PBXBuildFile; fileRef = 339090272779E098007D2864 /* WeatherChallenge.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390903D2779E13B007D2864 /* HTTPClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,7 @@
 		339090272779E098007D2864 /* WeatherChallenge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherChallenge.h; sourceTree = "<group>"; };
 		3390902C2779E099007D2864 /* WeatherChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		339090312779E099007D2864 /* WeatherChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChallengeTests.swift; sourceTree = "<group>"; };
+		3390903D2779E13B007D2864 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				339090272779E098007D2864 /* WeatherChallenge.h */,
+				3390903C2779E121007D2864 /* Weather API */,
 			);
 			path = WeatherChallenge;
 			sourceTree = "<group>";
@@ -80,6 +83,14 @@
 				339090312779E099007D2864 /* WeatherChallengeTests.swift */,
 			);
 			path = WeatherChallengeTests;
+			sourceTree = "<group>";
+		};
+		3390903C2779E121007D2864 /* Weather API */ = {
+			isa = PBXGroup;
+			children = (
+				3390903D2779E13B007D2864 /* HTTPClient.swift */,
+			);
+			path = "Weather API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,12 +149,13 @@
 		3390901B2779E098007D2864 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = NO;
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					339090232779E098007D2864 = {
 						CreatedOnToolsVersion = 13.1;
+						LastSwiftMigration = 1310;
 					};
 					3390902B2779E099007D2864 = {
 						CreatedOnToolsVersion = 13.1;
@@ -191,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,6 +350,7 @@
 		339090372779E099007D2864 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -358,6 +372,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -365,6 +380,7 @@
 		339090382779E099007D2864 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -393,6 +409,7 @@
 		3390903A2779E099007D2864 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -414,6 +431,7 @@
 		3390903B2779E099007D2864 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
