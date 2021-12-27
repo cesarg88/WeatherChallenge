@@ -8,11 +8,19 @@
 import XCTest
 import WeatherChallenge
 
-final class WeatherMapper {
-    
-    public enum Error: Swift.Error {
-        case connectivity, invalidData
+
+private extension RemoteWeather {
+    func toModel() -> Weather {
+        return Weather(latitude: self.coord.lat,
+                       longitude: self.coord.lon,
+                       cityName: self.name,
+                       temperature: self.main.temp,
+                       description: self.weather.first?.weatherDescription ?? "",
+                       iconName: self.weather.first?.icon ?? "" )
     }
+}
+
+final class WeatherMapper {
     
     private struct Root: Decodable {
         let weather: RemoteWeather
@@ -23,7 +31,7 @@ final class WeatherMapper {
     internal static func map(_ data: Data, from response: HTTPURLResponse) throws -> RemoteWeather {
         guard response.statusCode == OK_200,
               let root = try? JSONDecoder().decode(Root.self, from: data)
-        else { throw Error.invalidData }
+        else { throw RemoteWeatherLoader.Error.invalidData }
         return root.weather
     }
 }
@@ -43,12 +51,23 @@ final class RemoteWeatherLoader {
     }
     
     public func load(completion: @escaping (WeatherLoader.Result) -> Void) {
-        client.get(from: url) { result in
+        client.get(from: url) { [weak self] result in
+            guard self != nil else { return }
             switch result {
-                case .success((_,_)): break
-                case let .failure:
+                case let .success((data, response)):
+                    completion(RemoteWeatherLoader.map(data, from: response))
+                case .failure:
                     completion(.failure(Error.connectivity))
             }
+        }
+    }
+    
+    private static func map(_ data: Data, from response: HTTPURLResponse) -> WeatherLoader.Result {
+        do {
+            let remoteWeather = try WeatherMapper.map(data, from: response)
+            return .success(remoteWeather.toModel())
+        } catch {
+            return .failure(error)
         }
     }
 }
@@ -78,6 +97,20 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
                 let clientError = NSError(domain: "test", code: 0, userInfo: nil)
                 client.complete(with: clientError)
                })
+    }
+    
+    func test_load_deliversErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        
+        let samples = [199, 201, 300, 400, 500]
+        samples.enumerated().forEach { index, code in
+            expect(sut,
+                   toCompleteWith: failure(.invalidData),
+                   when: {
+                let json = makeWeatherJSON(item: makeItem().json)
+                    client.complete(withStatusCode: code, data: json, at: index)
+            })
+        }
     }
 
     
@@ -122,6 +155,40 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     
     private func failure( _ error: RemoteWeatherLoader.Error) -> WeatherLoader.Result {
         return .failure(error)
+    }
+    
+    private func makeWeatherJSON(item: [String: Any]) -> Data {
+
+        let json = try! JSONSerialization.data(withJSONObject: item)
+        return json
+    }
+    
+    private func makeItem(latitude:Double = 1.23,
+                          longitude: Double = 2.34,
+                          cityName: String = "madrid",
+                          temperature: Double = 0.0,
+                          description: String = "cloudly",
+                          iconName: String = "1d3") -> (model: Weather, json: [String: Any]) {
+        let item = Weather(latitude: latitude,
+                           longitude: longitude,
+                           cityName: cityName,
+                           temperature: temperature,
+                           description: description,
+                           iconName: iconName)
+        
+        let json = [
+            "weather": ["coord":["lon": item.longitude,
+                                 "lat": item.latitude],
+                        "weather": [["id":807,
+                                     "main":item.description,
+                                     "description":item.description,
+                                     "icon":item.iconName]],
+                        "main": ["temp": item.temperature],
+                        "name": item.cityName
+                       ]
+        ].compactMapValues { $0 }
+        
+        return (item, json)
     }
     
     private class HTTPClientSpy: HTTPClient {
