@@ -123,8 +123,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
                            description: description,
                            iconName: iconName)
         
-        let json = [
-            "weather": ["coord":["lon": item.longitude,
+        let json = ["coord":["lon": item.longitude,
                                  "lat": item.latitude],
                         "weather": [["id":807,
                                      "main":item.description,
@@ -132,7 +131,6 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
                                      "icon":item.iconName]],
                         "main": ["temp": item.temperature],
                         "name": item.cityName
-                       ]
         ].compactMapValues { $0 }
         
         return (item, json)
