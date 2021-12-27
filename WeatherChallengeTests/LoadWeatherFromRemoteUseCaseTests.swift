@@ -37,7 +37,7 @@ final class WeatherMapper {
 }
 
 
-final class RemoteWeatherLoader {
+final class RemoteWeatherLoader: WeatherLoader {
     private let url: URL
     private let client: HTTPClient
     
@@ -129,7 +129,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     
     private func makeSUT(url: URL = URL(string: "https://a-url.com")!,
                          file: StaticString = #filePath,
-                         line: UInt = #line) -> (sut: RemoteWeatherLoader, client: HTTPClientSpy) {
+                         line: UInt = #line) -> (sut: WeatherLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
         let sut = RemoteWeatherLoader(url: url, client: client)
         trackForMemoryLeaks(sut,file: file, line: line)
@@ -139,7 +139,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     }
     
     //file and line params are used to report the error on the correct line
-    private func expect(_ sut: RemoteWeatherLoader,
+    private func expect(_ sut: WeatherLoader,
                         toCompleteWith expectedResult: WeatherLoader.Result,
                         when action: () -> Void,
                         file: StaticString = #filePath,
