@@ -24,6 +24,8 @@
 		33909060277A1399007D2864 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3390905E277A1399007D2864 /* LaunchScreen.storyboard */; };
 		3390906B277A1399007D2864 /* WeatheriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390906A277A1399007D2864 /* WeatheriOSTests.swift */; };
 		33909082277A2148007D2864 /* WeatherChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339090242779E098007D2864 /* WeatherChallenge.framework */; };
+		33909084277A2EC3007D2864 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33909083277A2EC3007D2864 /* Presenter.swift */; };
+		33909086277A2F1B007D2864 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33909085277A2F1B007D2864 /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		33909061277A1399007D2864 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33909066277A1399007D2864 /* WeatheriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatheriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3390906A277A1399007D2864 /* WeatheriOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatheriOSTests.swift; sourceTree = "<group>"; };
+		33909083277A2EC3007D2864 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		33909085277A2F1B007D2864 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,8 +168,9 @@
 		33909052277A1395007D2864 /* WeatheriOS */ = {
 			isa = PBXGroup;
 			children = (
-				33909053277A1395007D2864 /* AppDelegate.swift */,
-				33909055277A1395007D2864 /* SceneDelegate.swift */,
+				33909087277A2FE1007D2864 /* application */,
+				33909085277A2F1B007D2864 /* ViewModel.swift */,
+				33909083277A2EC3007D2864 /* Presenter.swift */,
 				33909057277A1395007D2864 /* ViewController.swift */,
 				33909059277A1395007D2864 /* Main.storyboard */,
 				3390905C277A1398007D2864 /* Assets.xcassets */,
@@ -188,6 +193,15 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		33909087277A2FE1007D2864 /* application */ = {
+			isa = PBXGroup;
+			children = (
+				33909055277A1395007D2864 /* SceneDelegate.swift */,
+				33909053277A1395007D2864 /* AppDelegate.swift */,
+			);
+			path = application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,8 +396,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33909086277A2F1B007D2864 /* ViewModel.swift in Sources */,
 				33909058277A1395007D2864 /* ViewController.swift in Sources */,
 				33909054277A1395007D2864 /* AppDelegate.swift in Sources */,
+				33909084277A2EC3007D2864 /* Presenter.swift in Sources */,
 				33909056277A1395007D2864 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

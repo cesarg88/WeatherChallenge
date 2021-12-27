@@ -8,57 +8,18 @@
 import UIKit
 import WeatherChallenge
 
-protocol PresenterProtocol {
-    func viewDidLoadAction()
+protocol ViewProtocol: AnyObject {
+    func display(_ viewModel: ViewModel)
 }
 
-final class Presenter: PresenterProtocol {
+final class ViewController: UIViewController, ViewProtocol {
     
-    private var loader: WeatherLoader
-    
-    private let iconDict = ["Drizzle": "cloud.drizzle.fill",
-                           "Thunderstorm": "cloud.sun.bolt.fill",
-                           "Rain": "cloud.rain.fill",
-                           "Snow": "cloud.snow.fill",
-                           "Clear": "sun.max.fill",
-                           "Clouds": "cloud.fill",
-                           "Smoke": "smoke.fill"]
-    
-    init(loader: WeatherLoader) {
-        self.loader = loader
-    }
-    
-    func viewDidLoadAction() {
-        print("viewDidLoadAction called")
-        loader.load { [weak self] result in
-            switch result {
-                case .success(let weather):
-                    let viewModel = ViewModel(
-                        latitude: "\(weather.latitude)",
-                        longitude: "\(weather.longitude)",
-                        cityName: weather.cityName,
-                        temperature: "\(weather.temperature)ºC",
-                        weatherDescription: weather.description,
-                        weatherIcon: self!.iconDict[weather.iconName] ?? "moon.fill")
-                    print(viewModel)
-                case .failure(let error):
-                    print(error.localizedDescription)
-            }
-        }
-    }
-}
-
-struct ViewModel {
-    var latitude: String
-    var longitude: String
-    var cityName: String
-    var temperature: String
-    var weatherDescription: String
-    var weatherIcon: String
-}
-
-final class ViewController: UIViewController {
-    
+    @IBOutlet weak var cityNameLabel: UILabel! {didSet{cityNameLabel.text = ""}}
+    @IBOutlet weak var temperatureLabel: UILabel! {didSet{temperatureLabel.text = ""}}
+    @IBOutlet weak var descriptionLabel: UILabel! {didSet{descriptionLabel.text = ""}}
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var latitudLabel: UILabel! {didSet{latitudLabel.text = ""}}
+    @IBOutlet weak var longitudLabel: UILabel! {didSet{longitudLabel.text = ""}}
     private let presenter: PresenterProtocol
     
     init?(coder: NSCoder, presenter: PresenterProtocol) {
@@ -74,7 +35,14 @@ final class ViewController: UIViewController {
         super.viewDidLoad()
         presenter.viewDidLoadAction()
     }
-
-
+    
+    func display(_ viewModel: ViewModel) {
+        cityNameLabel.text = viewModel.cityName
+        longitudLabel.text = viewModel.longitude
+        latitudLabel.text = viewModel.latitude
+        temperatureLabel.text = viewModel.temperature
+        iconImageView.image = UIImage(systemName: viewModel.weatherIcon)?.withRenderingMode(.alwaysOriginal)
+        descriptionLabel.text = viewModel.weatherDescription
+    }
 }
 

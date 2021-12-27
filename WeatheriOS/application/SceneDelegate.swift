@@ -22,12 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let string = "https://api.openweathermap.org/data/2.5/weather?lat=40.416775&lon=-3.70379&appid=b4ccaaeb72655067d09d3c0da0a6de92&units=metric&lang=es".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             let url = URL(string: string)!
             let loader = RemoteWeatherLoader(url: url, client: client)
-            let presenter: PresenterProtocol = Presenter(loader: loader)
+            var presenter: PresenterProtocol = Presenter(loader: loader)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyboard.instantiateViewController(identifier: "viewController", creator: { coder in
                 return ViewController(coder: coder,
                                       presenter: presenter)
             })
+            presenter.view = vc
             window.rootViewController = vc
             self.window = window
             window.makeKeyAndVisible()
