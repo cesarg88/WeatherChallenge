@@ -29,6 +29,9 @@
 		3390902C2779E099007D2864 /* WeatherChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		339090312779E099007D2864 /* WeatherChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChallengeTests.swift; sourceTree = "<group>"; };
 		3390903D2779E13B007D2864 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherLoader.swift; sourceTree = "<group>"; };
+		339090422779E81B007D2864 /* RemoteWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeather.swift; sourceTree = "<group>"; };
+		339090442779E88C007D2864 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 		339090262779E098007D2864 /* WeatherChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				3390903F2779E5CF007D2864 /* Weather Feature */,
 				339090272779E098007D2864 /* WeatherChallenge.h */,
 				3390903C2779E121007D2864 /* Weather API */,
 			);
@@ -89,8 +93,18 @@
 			isa = PBXGroup;
 			children = (
 				3390903D2779E13B007D2864 /* HTTPClient.swift */,
+				339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */,
+				339090422779E81B007D2864 /* RemoteWeather.swift */,
+				339090442779E88C007D2864 /* URLSessionHTTPClient.swift */,
 			);
 			path = "Weather API";
+			sourceTree = "<group>";
+		};
+		3390903F2779E5CF007D2864 /* Weather Feature */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Weather Feature";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,6 +218,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */,
+				339090432779E81B007D2864 /* RemoteWeather.swift in Sources */,
+				339090412779E7F4007D2864 /* RemoteWeatherLoader.swift in Sources */,
+				339090452779E88C007D2864 /* URLSessionHTTPClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
