@@ -13,19 +13,19 @@ public protocol WeatherLoader {
 }
 
 public struct Weather: Equatable {
-    let latitude: Double
-    let longitude: Double
-    let cityName: String
-    let temperature: Double
-    let description: String?
-    let iconName: String?
+    public let latitude: Double
+    public let longitude: Double
+    public let cityName: String
+    public let temperature: Double
+    public let description: String
+    public let iconName: String
     
     public init(latitude: Double,
                 longitude: Double,
                 cityName: String,
                 temperature: Double,
-                description: String?,
-                iconName: String?) {
+                description: String,
+                iconName: String) {
         self.latitude = latitude
         self.longitude = longitude
         self.cityName = cityName
