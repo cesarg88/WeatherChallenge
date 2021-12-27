@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3390902D2779E099007D2864 /* WeatherChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339090242779E098007D2864 /* WeatherChallenge.framework */; };
-		339090322779E099007D2864 /* WeatherChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090312779E099007D2864 /* WeatherChallengeTests.swift */; };
 		339090332779E099007D2864 /* WeatherChallenge.h in Headers */ = {isa = PBXBuildFile; fileRef = 339090272779E098007D2864 /* WeatherChallenge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390903D2779E13B007D2864 /* HTTPClient.swift */; };
 		339090412779E7F4007D2864 /* RemoteWeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */; };
@@ -33,7 +32,6 @@
 		339090242779E098007D2864 /* WeatherChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeatherChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		339090272779E098007D2864 /* WeatherChallenge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherChallenge.h; sourceTree = "<group>"; };
 		3390902C2779E099007D2864 /* WeatherChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		339090312779E099007D2864 /* WeatherChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherChallengeTests.swift; sourceTree = "<group>"; };
 		3390903D2779E13B007D2864 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherLoader.swift; sourceTree = "<group>"; };
 		339090422779E81B007D2864 /* RemoteWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeather.swift; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 		339090302779E099007D2864 /* WeatherChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
-				339090312779E099007D2864 /* WeatherChallengeTests.swift */,
 				339090462779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift */,
 			);
 			path = WeatherChallengeTests;
@@ -243,7 +240,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				339090472779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift in Sources */,
-				339090322779E099007D2864 /* WeatherChallengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
