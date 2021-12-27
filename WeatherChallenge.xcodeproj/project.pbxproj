@@ -11,6 +11,11 @@
 		339090322779E099007D2864 /* WeatherChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090312779E099007D2864 /* WeatherChallengeTests.swift */; };
 		339090332779E099007D2864 /* WeatherChallenge.h in Headers */ = {isa = PBXBuildFile; fileRef = 339090272779E098007D2864 /* WeatherChallenge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390903D2779E13B007D2864 /* HTTPClient.swift */; };
+		339090412779E7F4007D2864 /* RemoteWeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */; };
+		339090432779E81B007D2864 /* RemoteWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090422779E81B007D2864 /* RemoteWeather.swift */; };
+		339090452779E88C007D2864 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090442779E88C007D2864 /* URLSessionHTTPClient.swift */; };
+		339090472779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090462779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift */; };
+		3390904A2779EA4F007D2864 /* WeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090492779EA4F007D2864 /* WeatherLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +37,8 @@
 		339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeatherLoader.swift; sourceTree = "<group>"; };
 		339090422779E81B007D2864 /* RemoteWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteWeather.swift; sourceTree = "<group>"; };
 		339090442779E88C007D2864 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		339090462779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadWeatherFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
+		339090492779EA4F007D2864 /* WeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				339090312779E099007D2864 /* WeatherChallengeTests.swift */,
+				339090462779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift */,
 			);
 			path = WeatherChallengeTests;
 			sourceTree = "<group>";
@@ -103,6 +111,7 @@
 		3390903F2779E5CF007D2864 /* Weather Feature */ = {
 			isa = PBXGroup;
 			children = (
+				339090492779EA4F007D2864 /* WeatherLoader.swift */,
 			);
 			path = "Weather Feature";
 			sourceTree = "<group>";
@@ -219,6 +228,7 @@
 			files = (
 				3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */,
 				339090432779E81B007D2864 /* RemoteWeather.swift in Sources */,
+				3390904A2779EA4F007D2864 /* WeatherLoader.swift in Sources */,
 				339090412779E7F4007D2864 /* RemoteWeatherLoader.swift in Sources */,
 				339090452779E88C007D2864 /* URLSessionHTTPClient.swift in Sources */,
 			);
@@ -228,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				339090472779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift in Sources */,
 				339090322779E099007D2864 /* WeatherChallengeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
