@@ -8,44 +8,6 @@
 import XCTest
 import WeatherChallenge
 
-//final class RemoteWeatherLoader {
-//    private let url: URL
-//    private let client: HTTPClient
-//
-//    public enum Error: Swift.Error {
-//        case connectivity, invalidData
-//    }
-//
-//    init(url: URL, client: HTTPClient) {
-//        self.url = url
-//        self.client = client
-//    }
-//
-//    private static func map(_ data: Data, from response: HTTPURLResponse) -> WeatherLoader.Result {
-//        do {
-//            let remoteWeather = try WeatherMapper.map(data, from: response)
-//            return .success(remoteWeather.toModel())
-//        } catch {
-//            return .failure(error)
-//        }
-//    }
-//
-//    public func load(completion: @escaping (WeatherLoader.Result) -> Void) {
-//        client.get(from: url) { result in }
-//    }
-//}
-
-private extension RemoteWeather {
-    func toModel() -> Weather {
-        return Weather(latitude: self.coord.lat,
-                       longitude: self.coord.lon,
-                       cityName: self.name,
-                       temperature: self.main.temp,
-                       description: self.weather.first?.weatherDescription,
-                       iconName: self.weather.first?.icon)
-    }
-}
-
 final class WeatherMapper {
     
     public enum Error: Swift.Error {
