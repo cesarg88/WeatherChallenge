@@ -8,22 +8,22 @@
 import Foundation
 
 // MARK: - RemoteWeather
-struct RemoteWeather: Codable {
-    let coord: Coord
-    let weather: [WeatherItem]
-    let main: Main
-    let name: String
+public struct RemoteWeather: Codable {
+    public let coord: Coord
+    public let weather: [WeatherItem]
+    public let main: Main
+    public let name: String
 }
 
 // MARK: - Coord
-struct Coord: Codable {
-    let lon, lat: Double
+public struct Coord: Codable {
+    public let lon, lat: Double
 }
 
 // MARK: - Main
-struct Main: Codable {
-    let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, humidity: Int
+public struct Main: Codable {
+    public let temp, feelsLike, tempMin, tempMax: Double
+    public let pressure, humidity: Int
 
     enum CodingKeys: String, CodingKey {
         case temp
@@ -35,9 +35,9 @@ struct Main: Codable {
 }
 
 // MARK: - Weather
-struct WeatherItem: Codable {
-    let id: Int
-    let main, weatherDescription, icon: String
+public struct WeatherItem: Codable {
+    public let id: Int
+    public let main, weatherDescription, icon: String
 
     enum CodingKeys: String, CodingKey {
         case id, main
