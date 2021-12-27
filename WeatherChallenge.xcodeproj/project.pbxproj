@@ -16,6 +16,7 @@
 		339090452779E88C007D2864 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090442779E88C007D2864 /* URLSessionHTTPClient.swift */; };
 		339090472779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090462779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift */; };
 		3390904A2779EA4F007D2864 /* WeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090492779EA4F007D2864 /* WeatherLoader.swift */; };
+		3390904C277A0A82007D2864 /* WeatherMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390904B277A0A82007D2864 /* WeatherMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +40,7 @@
 		339090442779E88C007D2864 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
 		339090462779E959007D2864 /* LoadWeatherFromRemoteUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadWeatherFromRemoteUseCaseTests.swift; sourceTree = "<group>"; };
 		339090492779EA4F007D2864 /* WeatherLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherLoader.swift; sourceTree = "<group>"; };
+		3390904B277A0A82007D2864 /* WeatherMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */,
 				339090422779E81B007D2864 /* RemoteWeather.swift */,
 				339090442779E88C007D2864 /* URLSessionHTTPClient.swift */,
+				3390904B277A0A82007D2864 /* WeatherMapper.swift */,
 			);
 			path = "Weather API";
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */,
 				339090432779E81B007D2864 /* RemoteWeather.swift in Sources */,
 				3390904A2779EA4F007D2864 /* WeatherLoader.swift in Sources */,
+				3390904C277A0A82007D2864 /* WeatherMapper.swift in Sources */,
 				339090412779E7F4007D2864 /* RemoteWeatherLoader.swift in Sources */,
 				339090452779E88C007D2864 /* URLSessionHTTPClient.swift in Sources */,
 			);
