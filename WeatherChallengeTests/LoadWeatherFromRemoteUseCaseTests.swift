@@ -67,6 +67,19 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
                })
     }
     
+    func test_load_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
+        let client = HTTPClientSpy()
+        var sut: WeatherLoader? = RemoteWeatherLoader(client: client)
+        
+        var capturedResults: [WeatherLoader.Result] = []
+        sut?.loadWeatherFor(locationType: .initial) { capturedResults.append($0) }
+        
+        sut = nil
+        let json = makeWeatherJSON(item: makeItem().json)
+        client.complete(withStatusCode: 200, data: json)
+        XCTAssertTrue(capturedResults.isEmpty)
+    }
+    
     // MARK: - Helpers
     
     private func makeSUT(file: StaticString = #filePath,
