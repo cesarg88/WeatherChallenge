@@ -33,17 +33,18 @@ final class Presenter: PresenterProtocol {
     
     func viewDidLoadAction() {
         loader.load { [weak self] result in
+            guard let self = self else { return }
             switch result {
                 case .success(let weather):
                     let viewModel = ViewModel(
-                        latitude: "latitud: \(weather.latitude)",
-                        longitude: "longitud: \(weather.longitude)",
+                        latitude: "latitud: \(weather.location.latitude)",
+                        longitude: "longitud: \(weather.location.longitude)",
                         cityName: weather.cityName,
-                        temperature: "\(weather.temperature)ºC",
+                        temperature: "\(Int(weather.temperature))ºC",
                         weatherDescription: weather.description,
-                        weatherIcon: self!.iconDict[weather.iconName] ?? "moon.fill")
+                        weatherIcon: self.iconDict[weather.iconName] ?? "moon.fill")
                     DispatchQueue.main.async {
-                        self?.view?.display(viewModel)
+                        self.view?.display(viewModel)
                     }
                 case .failure(let error):
                     print(error.localizedDescription)
