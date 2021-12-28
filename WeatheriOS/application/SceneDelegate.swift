@@ -19,8 +19,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let client = URLSessionHTTPClient(session: URLSession.shared)
-            let string = "https://api.openweathermap.org/data/2.5/weather?lat=40.416775&lon=-3.70379&appid=b4ccaaeb72655067d09d3c0da0a6de92&units=metric&lang=es".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            let url = URL(string: string)!
             let loader = RemoteWeatherLoader(client: client)
             var presenter: PresenterProtocol = Presenter(loader: loader)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

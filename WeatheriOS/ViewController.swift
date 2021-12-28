@@ -44,5 +44,8 @@ final class ViewController: UIViewController, ViewProtocol {
         iconImageView.image = UIImage(systemName: viewModel.weatherIcon)?.withRenderingMode(.alwaysOriginal)
         descriptionLabel.text = viewModel.weatherDescription
     }
+    @IBAction func changeLocation(_ sender: Any) {
+        presenter.reloadAction()
+    }
 }
 

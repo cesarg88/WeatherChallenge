@@ -7,7 +7,6 @@
 
 import Foundation
 import WeatherChallenge
-import CoreLocation
 
 protocol PresenterProtocol {
     var view: ViewProtocol? { get set }
@@ -29,24 +28,20 @@ final class Presenter: PresenterProtocol {
                            "Clouds": "cloud.fill",
                            "Smoke": "smoke.fill"]
     
-    private var initialLocation: CLLocationCoordinate2D {
-        CLLocationCoordinate2D(latitude: 40.416775, longitude: -3.70379)
-    }
-    
     init(loader: WeatherLoader) {
         self.loader = loader
     }
     
     func viewDidLoadAction() {
-        loadWeatherForLocation(initialLocation)
+        loadWeatherForLocation(type: .initial)
     }
-    
-    func reloadAction() {
         
+    func reloadAction() {
+        loadWeatherForLocation(type: .random)
     }
     
-    private func loadWeatherForLocation(_ location: CLLocationCoordinate2D) {
-        loader.loadFor(location: location) { [weak self] result in
+    private func loadWeatherForLocation(type: LocationType) {
+        loader.loadWeatherFor(locationType: type) { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .success(let weather):
@@ -66,3 +61,5 @@ final class Presenter: PresenterProtocol {
         }
     }
 }
+
+

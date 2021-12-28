@@ -55,6 +55,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4vm-ib-NSB">
+                                <rect key="frame" x="143.5" y="640" width="127" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="7Bm-n3-wgG"/>
+                                </constraints>
+                                <buttonConfiguration key="configuration" style="filled" title="change location"/>
+                                <connections>
+                                    <action selector="changeLocation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iz1-LY-42e"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
@@ -63,7 +73,9 @@
                             <constraint firstItem="pGI-CE-Fph" firstAttribute="top" secondItem="joh-mq-EZJ" secondAttribute="bottom" constant="12" id="1CY-gX-xfD"/>
                             <constraint firstItem="pGI-CE-Fph" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="GgL-3U-vow"/>
                             <constraint firstItem="joh-mq-EZJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="12" id="I0x-Og-mA6"/>
+                            <constraint firstItem="4vm-ib-NSB" firstAttribute="top" secondItem="iVc-Z5-oDf" secondAttribute="bottom" constant="71" id="MXG-4f-gaa"/>
                             <constraint firstItem="joh-mq-EZJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="72" id="NCY-ey-XEV"/>
+                            <constraint firstItem="4vm-ib-NSB" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="S9z-8G-Ded"/>
                             <constraint firstItem="Hj1-ko-pVN" firstAttribute="top" secondItem="auf-Lk-0bx" secondAttribute="bottom" constant="20" id="Ur3-mD-ZnF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="auf-Lk-0bx" secondAttribute="trailing" constant="20" id="WMn-e5-gXR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="joh-mq-EZJ" secondAttribute="trailing" constant="12" id="bON-It-2c3"/>

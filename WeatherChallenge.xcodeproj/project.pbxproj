@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		336BF39F277B1DEE00FA1484 /* LocationURLCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336BF39E277B1DEE00FA1484 /* LocationURLCreator.swift */; };
 		3390902D2779E099007D2864 /* WeatherChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339090242779E098007D2864 /* WeatherChallenge.framework */; };
 		339090332779E099007D2864 /* WeatherChallenge.h in Headers */ = {isa = PBXBuildFile; fileRef = 339090272779E098007D2864 /* WeatherChallenge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390903D2779E13B007D2864 /* HTTPClient.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		336BF39E277B1DEE00FA1484 /* LocationURLCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationURLCreator.swift; sourceTree = "<group>"; };
 		339090242779E098007D2864 /* WeatherChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeatherChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		339090272779E098007D2864 /* WeatherChallenge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherChallenge.h; sourceTree = "<group>"; };
 		3390902C2779E099007D2864 /* WeatherChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +177,7 @@
 				339090422779E81B007D2864 /* RemoteWeather.swift */,
 				339090442779E88C007D2864 /* URLSessionHTTPClient.swift */,
 				3390904B277A0A82007D2864 /* WeatherMapper.swift */,
+				336BF39E277B1DEE00FA1484 /* LocationURLCreator.swift */,
 			);
 			path = "Weather API";
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */,
 				339090432779E81B007D2864 /* RemoteWeather.swift in Sources */,
 				3390904A2779EA4F007D2864 /* WeatherLoader.swift in Sources */,
+				336BF39F277B1DEE00FA1484 /* LocationURLCreator.swift in Sources */,
 				3390904C277A0A82007D2864 /* WeatherMapper.swift in Sources */,
 				339090412779E7F4007D2864 /* RemoteWeatherLoader.swift in Sources */,
 				339090452779E88C007D2864 /* URLSessionHTTPClient.swift in Sources */,

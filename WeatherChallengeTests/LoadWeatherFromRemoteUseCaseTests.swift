@@ -19,14 +19,14 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     
     func test_load_createsCorrectURL() {
         let (sut, client) = makeSUT()
-        sut.loadWeatherFor(location: anyLocation) { _ in }
+        sut.loadWeatherFor(locationType: .initial) { _ in }
         XCTAssertEqual(client.requestedURLs, [correctURL])
     }
     
     func test_loadTwice_requestDataFromURL() {
         let (sut, client) = makeSUT()
-        sut.loadWeatherFor(location: anyLocation) { _ in }
-        sut.loadWeatherFor(location: anyLocation) { _ in }
+        sut.loadWeatherFor(locationType: .initial) { _ in }
+        sut.loadWeatherFor(locationType: .initial) { _ in }
         XCTAssertEqual(client.requestedURLs, [correctURL, correctURL])
     }
     
@@ -88,7 +88,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         
         let exp = expectation(description: "Wait for load completion")
         
-        sut.loadWeatherFor(location: anyLocation) { receivedResult in
+        sut.loadWeatherFor(locationType: .initial) { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedItems), .success(expectedItems)):
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
@@ -144,7 +144,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     }
     
     private var correctURL: URL {
-        URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=40.416775&lon=-3.70379&appid=b4ccaaeb72655067d09d3c0da0a6de92&units=metric&lang=es")!
+        URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=\(anyLocation.latitude)&lon=\(anyLocation.longitude)&appid=b4ccaaeb72655067d09d3c0da0a6de92&units=metric&lang=es")!
     }
     
     private class HTTPClientSpy: HTTPClient {

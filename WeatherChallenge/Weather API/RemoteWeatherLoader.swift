@@ -19,8 +19,8 @@ public final class RemoteWeatherLoader: WeatherLoader {
         self.client = client
     }
     
-    public func loadWeatherFor(location: CLLocationCoordinate2D, completion: @escaping (WeatherLoader.Result) -> Void) {
-        let url = makeURLFor(location: location)
+    public func loadWeatherFor(locationType: LocationType, completion: @escaping (WeatherLoader.Result) -> Void) {
+        let url = LocationURLCreator.makeURLFor(type: locationType)
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             switch result {
@@ -30,11 +30,6 @@ public final class RemoteWeatherLoader: WeatherLoader {
                     completion(.failure(Error.connectivity))
             }
         }
-    }
-    
-    private func makeURLFor(location: CLLocationCoordinate2D) -> URL {
-        let string = "https://api.openweathermap.org/data/2.5/weather?lat=40.416775&lon=-3.70379&appid=b4ccaaeb72655067d09d3c0da0a6de92&units=metric&lang=es".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        return  URL(string: string)!
     }
     
     private static func map(_ data: Data, from response: HTTPURLResponse) -> WeatherLoader.Result {
@@ -56,3 +51,4 @@ private extension RemoteWeather {
                        iconName: self.weather.first?.icon ?? "" )
     }
 }
+

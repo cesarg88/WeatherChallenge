@@ -7,6 +7,7 @@
 
 import Foundation
 import WeatherChallenge
+import SwiftUI
 
 class WeatherViewModel: ObservableObject {
     private let iconDict = ["Drizzle": "cloud.drizzle.fill",
@@ -30,7 +31,7 @@ class WeatherViewModel: ObservableObject {
     }
     
     func refresh() {
-        loader.load { [weak self] result in
+        loader.loadWeatherFor(locationType: .initial) { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .success(let weather):
