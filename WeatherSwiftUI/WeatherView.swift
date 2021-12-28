@@ -29,6 +29,24 @@ struct WeatherView: View {
                         .font(.system(size: 60, design: .rounded))
                         .foregroundColor(.white)
                         .shadow(color: .black, radius: 4, x: 1, y: 5)
+                        .lineLimit(nil)
+                    HStack {
+                        VStack(alignment: .leading, spacing: 6.0) {
+                            Text(viewModel.latitude)
+                                .font(.system(size: 16, design: .rounded))
+                                .foregroundColor(.white)
+                                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                                .shadow(color: .black, radius: 2, x: 1, y: 5)
+                            
+                            Text(viewModel.longitude)
+                                .font(.system(size: 16, design: .rounded))
+                                .foregroundColor(.white)
+                                .shadow(radius: /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
+                                .shadow(color: .black, radius: 2, x: 1, y: 5)
+                        }
+                        Spacer()
+                    }
+                    
                     Text(viewModel.temperature)
                         .font(.system(size: 50, design: .rounded))
                         .foregroundColor(.white)
@@ -47,16 +65,11 @@ struct WeatherView: View {
                         .padding()
                     if viewModel.backgroundImageName == nil {
                         Spacer()
-                        Button(action: {
-                            darkMode.toggle()
-                        }, label: {
-                            Text(darkMode ? "cambiar a modo normal" : "cambiar a modo oscuro")
-                                .frame(width: 280, height: 50)
-                                .background(Color.white)
-                                .font(.system(size: 20, weight: .bold))
-                                .cornerRadius(10)
-                        })
-                        .padding(20)
+                        HStack {
+                            changeModeButton
+                            Spacer()
+                            changeLocationButton
+                        }
                     }
                     Spacer()
                 }.onAppear(perform: {
@@ -66,6 +79,33 @@ struct WeatherView: View {
                 
             }
         }
+    }
+    
+    var changeLocationButton: some View {
+        Button(action: {
+            viewModel.reload()
+        }, label: {
+            Image(systemName: "arrow.counterclockwise.circle.fill")
+                .foregroundColor(.white)
+                .font(.system(size: 45, weight: .bold))
+                .frame(width: 50, height: 50)
+                .shadow(radius: 10)
+        })
+    }
+    
+    var changeModeButton: some View {
+        Button(action: {
+            darkMode.toggle()
+        }, label: {
+            let imageName = darkMode ? "circle.lefthalf.fill" : "circle.righthalf.fill"
+            let color = darkMode ? Color.white : Color.secondary
+            Image(systemName: imageName)
+                .foregroundColor(color)
+                .font(.system(size: 45, weight: .bold))
+                .frame(width: 50, height: 50)
+                .shadow(radius: 4)
+        })
+        .padding(20)
     }
 }
 

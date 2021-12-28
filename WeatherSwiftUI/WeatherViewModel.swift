@@ -23,6 +23,8 @@ class WeatherViewModel: ObservableObject {
     @Published var weatherDescription = "--"
     @Published var weatherIcon: String = "cloud.sun.bolt.fill"
     @Published var backgroundImageName: String?
+    @Published var latitude = "lat: --"
+    @Published var longitude = "lon: --"
     
     private var loader: WeatherLoader
     
@@ -31,7 +33,15 @@ class WeatherViewModel: ObservableObject {
     }
     
     func refresh() {
-        loader.loadWeatherFor(locationType: .initial) { [weak self] result in
+        refresh(type: .initial)
+    }
+    
+    func reload() {
+        refresh(type: .random)
+    }
+    
+    private func refresh(type: LocationType) {
+        loader.loadWeatherFor(locationType: type) { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .success(let weather):
@@ -39,6 +49,8 @@ class WeatherViewModel: ObservableObject {
                         self.cityName = weather.cityName
                         self.temperature = "\(Int(weather.temperature))ºC"
                         self.weatherDescription = weather.description
+                        self.latitude = "lat: \(weather.location.latitude)"
+                        self.longitude = "lon: \(weather.location.longitude)"
                         self.weatherIcon = self.iconDict[weather.iconName] ?? "moon.fill"
                     }
                 case .failure(let error):
