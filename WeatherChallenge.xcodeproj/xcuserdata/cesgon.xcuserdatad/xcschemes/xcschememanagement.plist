@@ -17,7 +17,7 @@
 		<key>WeatherSwiftUI.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>4</integer>
 		</dict>
 		<key>WeatherUIKit.xcscheme_^#shared#^_</key>
 		<dict>
@@ -25,6 +25,11 @@
 			<integer>2</integer>
 		</dict>
 		<key>WeatheriOS.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>WeatheriOSTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>3</integer>
@@ -38,6 +43,16 @@
 			<true/>
 		</dict>
 		<key>3390902B2779E099007D2864</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33909050277A1395007D2864</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33909065277A1399007D2864</key>
 		<dict>
 			<key>primary</key>
 			<true/>

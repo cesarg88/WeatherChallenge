@@ -8,7 +8,7 @@
 import Foundation
 import WeatherChallenge
 
-protocol PresenterProtocol {
+public protocol PresenterProtocol {
     var view: ViewProtocol? { get set }
     func viewDidLoadAction()
     func reloadAction()
@@ -55,8 +55,10 @@ final class Presenter: PresenterProtocol {
                     DispatchQueue.main.async {
                         self.view?.display(viewModel)
                     }
-                case .failure(let error):
-                    print(error.localizedDescription)
+                case .failure:
+                    DispatchQueue.main.async {
+                        self.view?.displayErrorWith(text: "something went wrong, please try again")
+                    }
             }
         }
     }

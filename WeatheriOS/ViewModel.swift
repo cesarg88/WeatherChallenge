@@ -7,11 +7,25 @@
 
 import Foundation
 
-struct ViewModel {
-    var latitude: String
-    var longitude: String
-    var cityName: String
-    var temperature: String
-    var weatherDescription: String
-    var weatherIcon: String
+public struct ViewModel {
+    public var latitude: String
+    public var longitude: String
+    public var cityName: String
+    public var temperature: String
+    public var weatherDescription: String
+    public var weatherIcon: String
+    
+    public init(latitude: String,
+                longitude: String,
+                cityName: String,
+                temperature: String,
+                weatherDescription: String,
+                weatherIcon: String) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.cityName = cityName
+        self.temperature = temperature
+        self.weatherDescription = weatherDescription
+        self.weatherIcon = weatherIcon
+    }
 }
