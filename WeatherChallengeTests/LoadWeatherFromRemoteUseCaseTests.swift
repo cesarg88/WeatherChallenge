@@ -58,13 +58,13 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     func test_load_deliversItemsOn200HTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
         let item = makeItem()
-     
+        
         expect(sut,
                toCompleteWith: .success(item.model),
                when: {
             let json =  makeWeatherJSON(item: item.json)
-                client.complete(withStatusCode: 200, data: json)
-               })
+            client.complete(withStatusCode: 200, data: json)
+        })
     }
     
     func test_load_doesNotDeliversResultAfterSUTInstanceHasBeenDeallocated() {
