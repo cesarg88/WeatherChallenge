@@ -14,11 +14,11 @@ public protocol PresenterProtocol {
     func reloadAction()
 }
 
-final class Presenter: PresenterProtocol {
+public final class Presenter: PresenterProtocol {
     
     private var loader: WeatherLoader
     
-    weak var view: ViewProtocol?
+    weak public var view: ViewProtocol?
     
     private let iconDict = ["Drizzle": "cloud.drizzle.fill",
                            "Thunderstorm": "cloud.sun.bolt.fill",
@@ -28,15 +28,15 @@ final class Presenter: PresenterProtocol {
                            "Clouds": "cloud.fill",
                            "Smoke": "smoke.fill"]
     
-    init(loader: WeatherLoader) {
+    public init(loader: WeatherLoader) {
         self.loader = loader
     }
     
-    func viewDidLoadAction() {
+    public func viewDidLoadAction() {
         loadWeatherForLocation(type: .initial)
     }
         
-    func reloadAction() {
+    public func reloadAction() {
         loadWeatherForLocation(type: .random)
     }
     
@@ -52,13 +52,9 @@ final class Presenter: PresenterProtocol {
                         temperature: "\(Int(weather.temperature))ºC",
                         weatherDescription: weather.description,
                         weatherIcon: self.iconDict[weather.iconName] ?? "moon.fill")
-                    DispatchQueue.main.async {
-                        self.view?.display(viewModel)
-                    }
+                    self.view?.display(viewModel)
                 case .failure:
-                    DispatchQueue.main.async {
-                        self.view?.displayErrorWith(text: "something went wrong, please try again")
-                    }
+                    self.view?.displayErrorWith(text: "something went wrong, please try again")
             }
         }
     }
