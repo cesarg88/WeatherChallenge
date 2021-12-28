@@ -17,12 +17,17 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
+    func test_load_createsCorrectURL() {
+        let (sut, client) = makeSUT()
+        sut.loadWeatherFor(location: anyLocation) { _ in }
+        XCTAssertEqual(client.requestedURLs, [correctURL])
+    }
+    
     func test_loadTwice_requestDataFromURL() {
-        let url = URL(string: "https://a-given-url.com")!
-        let (sut, client) = makeSUT(url: url)
-        sut.load { _ in }
-        sut.load { _ in }
-        XCTAssertEqual(client.requestedURLs, [url, url])
+        let (sut, client) = makeSUT()
+        sut.loadWeatherFor(location: anyLocation) { _ in }
+        sut.loadWeatherFor(location: anyLocation) { _ in }
+        XCTAssertEqual(client.requestedURLs, [correctURL, correctURL])
     }
     
     func test_load_deliversErrorOnClientError() {
@@ -64,11 +69,10 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     
     // MARK: - Helpers
     
-    private func makeSUT(url: URL = URL(string: "https://a-url.com")!,
-                         file: StaticString = #filePath,
+    private func makeSUT(file: StaticString = #filePath,
                          line: UInt = #line) -> (sut: WeatherLoader, client: HTTPClientSpy) {
         let client = HTTPClientSpy()
-        let sut = RemoteWeatherLoader(url: url, client: client)
+        let sut = RemoteWeatherLoader(client: client)
         trackForMemoryLeaks(sut,file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
         return (sut: sut,
@@ -84,7 +88,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         
         let exp = expectation(description: "Wait for load completion")
         
-        sut.load { receivedResult in
+        sut.loadWeatherFor(location: anyLocation) { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedItems), .success(expectedItems)):
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)
@@ -133,6 +137,14 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         ].compactMapValues { $0 }
         
         return (item, json)
+    }
+    
+    private var anyLocation: CLLocationCoordinate2D {
+        CLLocationCoordinate2D(latitude: 40.416775, longitude: -3.70379)
+    }
+    
+    private var correctURL: URL {
+        URL(string: "https://api.openweathermap.org/data/2.5/weather?lat=40.416775&lon=-3.70379&appid=b4ccaaeb72655067d09d3c0da0a6de92&units=metric&lang=es")!
     }
     
     private class HTTPClientSpy: HTTPClient {

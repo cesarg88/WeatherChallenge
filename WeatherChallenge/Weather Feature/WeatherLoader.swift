@@ -10,7 +10,7 @@ import CoreLocation
 
 public protocol WeatherLoader {
     typealias Result = Swift.Result<Weather, Error>
-    func load(completion: @escaping (Result) -> Void)
+    func loadWeatherFor(location: CLLocationCoordinate2D, completion: @escaping (Result) -> Void)
 }
 
 public struct Weather: Equatable {
