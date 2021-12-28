@@ -7,6 +7,7 @@
 
 import XCTest
 import WeatherChallenge
+import CoreLocation
 
 class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
     
@@ -110,21 +111,19 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         return json
     }
     
-    private func makeItem(latitude:Double = 1.23,
-                          longitude: Double = 2.34,
+    private func makeItem(location: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 1.23, longitude: 2.34),
                           cityName: String = "madrid",
                           temperature: Double = 0.0,
                           description: String = "sunny",
                           iconName: String = "sunny") -> (model: Weather, json: [String: Any]) {
-        let item = Weather(latitude: latitude,
-                           longitude: longitude,
+        let item = Weather(location: location,
                            cityName: cityName,
                            temperature: temperature,
                            description: description,
                            iconName: iconName)
         
-        let json = ["coord":["lon": item.longitude,
-                                 "lat": item.latitude],
+        let json = ["coord":["lon": item.location.longitude,
+                             "lat": item.location.latitude],
                         "weather": [["id":807,
                                      "main":item.description,
                                      "description":item.description,

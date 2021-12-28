@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public protocol WeatherLoader {
     typealias Result = Swift.Result<Weather, Error>
@@ -13,24 +14,33 @@ public protocol WeatherLoader {
 }
 
 public struct Weather: Equatable {
-    public let latitude: Double
-    public let longitude: Double
+    public let location: CLLocationCoordinate2D
     public let cityName: String
     public let temperature: Double
     public let description: String
     public let iconName: String
     
-    public init(latitude: Double,
-                longitude: Double,
+    public init(location: CLLocationCoordinate2D,
                 cityName: String,
                 temperature: Double,
                 description: String,
                 iconName: String) {
-        self.latitude = latitude
-        self.longitude = longitude
         self.cityName = cityName
         self.temperature = temperature
         self.description = description
         self.iconName = iconName
+        self.location = location
     }
+}
+
+extension CLLocationCoordinate2D: Equatable {
+    
+    public static func == (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
+    }
+    
+    static func != (lhs: CLLocationCoordinate2D, rhs: CLLocationCoordinate2D) -> Bool {
+        return lhs.latitude != rhs.latitude && lhs.longitude != rhs.longitude
+    }
+    
 }

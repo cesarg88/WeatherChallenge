@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public final class RemoteWeatherLoader: WeatherLoader {
     private let url: URL
@@ -44,8 +45,7 @@ public final class RemoteWeatherLoader: WeatherLoader {
 
 private extension RemoteWeather {
     func toModel() -> Weather {
-        return Weather(latitude: self.coord.lat,
-                       longitude: self.coord.lon,
+        return Weather(location: CLLocationCoordinate2D(latitude: self.coord.lat, longitude: self.coord.lon),
                        cityName: self.name,
                        temperature: self.main.temp,
                        description: self.weather.first?.weatherDescription ?? "",
