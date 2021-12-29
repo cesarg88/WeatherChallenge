@@ -46,6 +46,10 @@ class WeatherViewModel: ObservableObject {
             switch result {
                 case .success(let weather):
                     DispatchQueue.main.async {
+                        if weather.cityName.isEmpty {
+                            self.reload()
+                            return
+                        }
                         self.cityName = weather.cityName
                         self.temperature = "\(Int(weather.temperature))ºC"
                         self.weatherDescription = weather.description
