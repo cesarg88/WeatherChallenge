@@ -7,7 +7,6 @@
 
 import UIKit
 import WeatherChallenge
-import MapKit
 
 public protocol ViewProtocol: AnyObject {
     func display(_ viewModel: ViewModel)
@@ -15,9 +14,7 @@ public protocol ViewProtocol: AnyObject {
 }
 
 public final class ViewController: UIViewController, ViewProtocol {
-    @IBOutlet weak var mapView: MKMapView!
     
-    @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak public private(set) var cityNameLabel: UILabel! {didSet{cityNameLabel.text = ""}}
     @IBOutlet weak public private(set) var temperatureLabel: UILabel! {didSet{temperatureLabel.text = ""}}
     @IBOutlet weak public private(set) var descriptionLabel: UILabel! {didSet{descriptionLabel.text = ""}}
@@ -25,8 +22,6 @@ public final class ViewController: UIViewController, ViewProtocol {
     @IBOutlet weak public private(set) var latitudLabel: UILabel! {didSet{latitudLabel.text = ""}}
     @IBOutlet weak public private(set) var longitudLabel: UILabel! {didSet{longitudLabel.text = ""}}
     private let presenter: PresenterProtocol
-    
-    let locationManager = CLLocationManager()
     
     public init?(coder: NSCoder, presenter: PresenterProtocol) {
         self.presenter = presenter
@@ -40,28 +35,15 @@ public final class ViewController: UIViewController, ViewProtocol {
     public override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoadAction()
-        locationManager.delegate = self
     }
-    private var currentAnnotation: MKPointAnnotation?
     
     public func display(_ viewModel: ViewModel) {
         cityNameLabel.text = viewModel.cityName
-//        longitudLabel.text = viewModel.longitude
-//        latitudLabel.text = viewModel.latitude
+        longitudLabel.text = viewModel.longitude
+        latitudLabel.text = viewModel.latitude
         temperatureLabel.text = viewModel.temperature
         iconImageView.image = UIImage(systemName: viewModel.weatherIcon)?.withRenderingMode(.alwaysOriginal)
         descriptionLabel.text = viewModel.weatherDescription
-        if let currentAnnotation = currentAnnotation {
-            mapView.removeAnnotation(currentAnnotation)
-        }
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = viewModel.coords
-        annotation.title = viewModel.cityName
-        annotation.subtitle = viewModel.temperature
-        currentAnnotation = annotation
-        mapView.addAnnotation(annotation)
-        let region = MKCoordinateRegion(center: viewModel.coords, span: MKCoordinateSpan(latitudeDelta: 0.9, longitudeDelta: 0.9))
-        mapView.setRegion(region, animated: true)
     }
     
     @IBAction private func changeLocation(_ sender: Any) {
@@ -106,9 +88,5 @@ public final class ViewController: UIViewController, ViewProtocol {
         
         return view
     }
-}
-
-extension ViewController: CLLocationManagerDelegate {
-    
 }
 
