@@ -45,6 +45,10 @@ public final class Presenter: PresenterProtocol {
             guard let self = self else { return }
             switch result {
                 case .success(let weather):
+                    if weather.cityName.isEmpty {
+                        self.reloadAction()
+                        return
+                    }
                     let viewModel = ViewModel(
                         latitude: "latitud: \(weather.location.latitude)",
                         longitude: "longitud: \(weather.location.longitude)",
