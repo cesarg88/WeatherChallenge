@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		332008E6277B6CE600A3A9DD /* PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332008E5277B6CE600A3A9DD /* PresenterTests.swift */; };
 		336BF39F277B1DEE00FA1484 /* LocationURLCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336BF39E277B1DEE00FA1484 /* LocationURLCreator.swift */; };
+		338540B2277C6EBA009C78E6 /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338540B1277C6EBA009C78E6 /* Composer.swift */; };
 		3390902D2779E099007D2864 /* WeatherChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339090242779E098007D2864 /* WeatherChallenge.framework */; };
 		339090332779E099007D2864 /* WeatherChallenge.h in Headers */ = {isa = PBXBuildFile; fileRef = 339090272779E098007D2864 /* WeatherChallenge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390903D2779E13B007D2864 /* HTTPClient.swift */; };
@@ -56,6 +57,7 @@
 /* Begin PBXFileReference section */
 		332008E5277B6CE600A3A9DD /* PresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterTests.swift; sourceTree = "<group>"; };
 		336BF39E277B1DEE00FA1484 /* LocationURLCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationURLCreator.swift; sourceTree = "<group>"; };
+		338540B1277C6EBA009C78E6 /* Composer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composer.swift; sourceTree = "<group>"; };
 		339090242779E098007D2864 /* WeatherChallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WeatherChallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		339090272779E098007D2864 /* WeatherChallenge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeatherChallenge.h; sourceTree = "<group>"; };
 		3390902C2779E099007D2864 /* WeatherChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -199,6 +201,7 @@
 				33909085277A2F1B007D2864 /* ViewModel.swift */,
 				33909083277A2EC3007D2864 /* Presenter.swift */,
 				33909057277A1395007D2864 /* ViewController.swift */,
+				338540B1277C6EBA009C78E6 /* Composer.swift */,
 				33909059277A1395007D2864 /* Main.storyboard */,
 				3390905C277A1398007D2864 /* Assets.xcassets */,
 				3390905E277A1399007D2864 /* LaunchScreen.storyboard */,
@@ -480,6 +483,7 @@
 				33909054277A1395007D2864 /* AppDelegate.swift in Sources */,
 				33909084277A2EC3007D2864 /* Presenter.swift in Sources */,
 				33909056277A1395007D2864 /* SceneDelegate.swift in Sources */,
+				338540B2277C6EBA009C78E6 /* Composer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

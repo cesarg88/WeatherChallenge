@@ -18,15 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            let client = URLSessionHTTPClient(session: URLSession.shared)
+            let configuration = URLSessionConfiguration.ephemeral
+            let client = URLSessionHTTPClient(session: URLSession(configuration: configuration))
             let loader = MainQueueDispatchDecorator(RemoteWeatherLoader(client: client))
-            var presenter: PresenterProtocol = Presenter(loader: loader)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "viewController", creator: { coder in
-                return ViewController(coder: coder,
-                                      presenter: presenter)
-            })
-            presenter.view = vc
+            let vc = UIComposer.composeWith(loader: loader)
             window.rootViewController = vc
             self.window = window
             window.makeKeyAndVisible()
