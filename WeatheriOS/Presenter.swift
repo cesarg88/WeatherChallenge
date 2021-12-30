@@ -49,18 +49,21 @@ public final class Presenter: PresenterProtocol {
                         self.reloadAction()
                         return
                     }
-                    let viewModel = ViewModel(
-                        latitude: "latitud: \(weather.location.latitude)",
-                        longitude: "longitud: \(weather.location.longitude)",
-                        cityName: weather.cityName,
-                        temperature: "\(Int(weather.temperature))ºC",
-                        weatherDescription: weather.description,
-                        weatherIcon: self.iconDict[weather.iconName] ?? "moon.fill")
-                    self.view?.display(viewModel)
+                    self.view?.display(self.createViewModelFrom(weather))
                 case .failure:
                     self.view?.displayErrorWith(text: "something went wrong, please try again")
             }
         }
+    }
+    
+    private func createViewModelFrom(_ weather: Weather) -> ViewModel {
+        ViewModel(
+            latitude: "latitud: \(weather.location.latitude)",
+            longitude: "longitud: \(weather.location.longitude)",
+            cityName: weather.cityName,
+            temperature: "\(Int(weather.temperature))ºC",
+            weatherDescription: weather.description,
+            weatherIcon: self.iconDict[weather.iconName] ?? "moon.fill")
     }
 }
 
