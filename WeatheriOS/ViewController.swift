@@ -47,10 +47,6 @@ public final class ViewController: UIViewController, ViewProtocol {
     }
     
     @IBAction private func changeLocation(_ sender: Any) {
-        changeLocation()
-    }
-    
-    public func changeLocation() {
         errorView?.removeFromSuperview()
         errorView = nil
         presenter.reloadAction()
@@ -89,4 +85,3 @@ public final class ViewController: UIViewController, ViewProtocol {
         return view
     }
 }
-
