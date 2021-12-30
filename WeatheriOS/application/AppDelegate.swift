@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  WeatheriOS
 //
-//  Created by César González Palomino on 27/12/21.
+//  Created by César González on 27/12/21.
 //
 
 import UIKit
