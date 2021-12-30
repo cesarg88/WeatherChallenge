@@ -8,12 +8,12 @@
 import Foundation
 
 public struct ViewModel {
-    public var latitude: String
-    public var longitude: String
-    public var cityName: String
-    public var temperature: String
-    public var weatherDescription: String
-    public var weatherIcon: String
+    public let latitude: String
+    public let longitude: String
+    public let cityName: String
+    public let temperature: String
+    public let weatherDescription: String
+    public let weatherIcon: String
     
     public init(latitude: String,
                 longitude: String,
