@@ -58,8 +58,7 @@ public final class Presenter: PresenterProtocol {
     
     private func createViewModelFrom(_ weather: Weather) -> ViewModel {
         ViewModel(
-            latitude: "latitud: \(weather.location.latitude)",
-            longitude: "longitud: \(weather.location.longitude)",
+            coords: weather.location,
             cityName: weather.cityName,
             temperature: "\(Int(weather.temperature))ºC",
             weatherDescription: weather.description,

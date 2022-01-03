@@ -7,6 +7,7 @@
 
 import UIKit
 import WeatherChallenge
+import MapKit
 
 public protocol ViewProtocol: AnyObject {
     func display(_ viewModel: ViewModel)
@@ -15,12 +16,24 @@ public protocol ViewProtocol: AnyObject {
 
 public final class ViewController: UIViewController, ViewProtocol {
     
+    @IBOutlet weak var buttonImageView: UIImageView! {
+        didSet {
+            let image = UIImage(systemName: "arrow.counterclockwise.circle.fill")
+            buttonImageView.image = image?.withRenderingMode(.alwaysOriginal)
+            buttonImageView.layer.cornerRadius = 0.5 * buttonImageView.bounds.size.width
+            buttonImageView.backgroundColor = .white
+            buttonImageView.contentMode = .center
+            buttonImageView.contentMode = .scaleAspectFill
+            buttonImageView.isUserInteractionEnabled = true
+            buttonImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(changeLocation(_:))))
+        }
+    }
+    
+    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak public private(set) var cityNameLabel: UILabel! {didSet{cityNameLabel.text = ""}}
     @IBOutlet weak public private(set) var temperatureLabel: UILabel! {didSet{temperatureLabel.text = ""}}
     @IBOutlet weak public private(set) var descriptionLabel: UILabel! {didSet{descriptionLabel.text = ""}}
     @IBOutlet weak public private(set) var iconImageView: UIImageView!
-    @IBOutlet weak public private(set) var latitudLabel: UILabel! {didSet{latitudLabel.text = ""}}
-    @IBOutlet weak public private(set) var longitudLabel: UILabel! {didSet{longitudLabel.text = ""}}
     private let presenter: PresenterProtocol
     
     public init?(coder: NSCoder, presenter: PresenterProtocol) {
@@ -37,13 +50,29 @@ public final class ViewController: UIViewController, ViewProtocol {
         presenter.viewDidLoadAction()
     }
     
+    private var currentAnnotation: MKPointAnnotation?
+    
     public func display(_ viewModel: ViewModel) {
         cityNameLabel.text = viewModel.cityName
-        longitudLabel.text = viewModel.longitude
-        latitudLabel.text = viewModel.latitude
         temperatureLabel.text = viewModel.temperature
         iconImageView.image = UIImage(systemName: viewModel.weatherIcon)?.withRenderingMode(.alwaysOriginal)
         descriptionLabel.text = viewModel.weatherDescription
+        
+        if let currentAnnotation = currentAnnotation {
+            mapView.removeAnnotation(currentAnnotation)
+        }
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = viewModel.coords
+        annotation.title = viewModel.cityName
+        annotation.subtitle = viewModel.weatherDescription
+        mapView.addAnnotation(annotation)
+        currentAnnotation = annotation
+        
+        let region = MKCoordinateRegion(center: viewModel.coords,
+                                        span: MKCoordinateSpan(latitudeDelta: 0.3, longitudeDelta: 0.3))
+        
+        mapView.setRegion(region, animated: true)
     }
     
     @IBAction private func changeLocation(_ sender: Any) {
