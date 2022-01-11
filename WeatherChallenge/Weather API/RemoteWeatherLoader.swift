@@ -19,8 +19,8 @@ public final class RemoteWeatherLoader: WeatherLoader {
         self.client = client
     }
     
-    public func loadWeatherFor(locationType: LocationType, completion: @escaping (WeatherLoader.Result) -> Void) {
-        let url = LocationURLCreator.makeURLFor(type: locationType)
+    public func loadWeather(completion: @escaping (WeatherLoader.Result) -> Void) {
+        let url = LocationURLCreator.makeURL()
         client.get(from: url) { [weak self] result in
             guard self != nil else { return }
             switch result {

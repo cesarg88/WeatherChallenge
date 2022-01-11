@@ -16,18 +16,13 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         
         XCTAssertTrue(client.requestedURLs.isEmpty)
     }
-    
-    func test_load_createsCorrectURL() {
-        let (sut, client) = makeSUT()
-        sut.loadWeatherFor(locationType: .initial) { _ in }
-        XCTAssertEqual(client.requestedURLs, [correctURL])
-    }
+   
     
     func test_loadTwice_requestDataFromURL() {
         let (sut, client) = makeSUT()
-        sut.loadWeatherFor(locationType: .initial) { _ in }
-        sut.loadWeatherFor(locationType: .initial) { _ in }
-        XCTAssertEqual(client.requestedURLs, [correctURL, correctURL])
+        sut.loadWeather { _ in }
+        sut.loadWeather { _ in }
+        XCTAssertEqual(client.requestedURLs.count, 2)
     }
     
     func test_load_deliversErrorOnClientError() {
@@ -72,7 +67,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         var sut: WeatherLoader? = RemoteWeatherLoader(client: client)
         
         var capturedResults: [WeatherLoader.Result] = []
-        sut?.loadWeatherFor(locationType: .initial) { capturedResults.append($0) }
+        sut?.loadWeather { capturedResults.append($0) }
         
         sut = nil
         let json = makeWeatherJSON(item: makeItem().json)
@@ -101,7 +96,7 @@ class LoadWeatherFromRemoteUseCaseTests: XCTestCase {
         
         let exp = expectation(description: "Wait for load completion")
         
-        sut.loadWeatherFor(locationType: .initial) { receivedResult in
+        sut.loadWeather { receivedResult in
             switch (receivedResult, expectedResult) {
             case let (.success(receivedItems), .success(expectedItems)):
                 XCTAssertEqual(receivedItems, expectedItems, file: file, line: line)

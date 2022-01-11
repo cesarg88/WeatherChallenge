@@ -8,14 +8,9 @@
 import Foundation
 import CoreLocation
 
-public enum LocationType {
-    case initial
-    case random
-}
-
 public protocol WeatherLoader {
     typealias Result = Swift.Result<Weather, Error>
-    func loadWeatherFor(locationType: LocationType, completion: @escaping (Result) -> Void)
+    func loadWeather(completion: @escaping (Result) -> Void)
 }
 
 public struct Weather: Equatable {
