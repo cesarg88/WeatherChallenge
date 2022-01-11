@@ -32,16 +32,12 @@ class WeatherViewModel: ObservableObject {
         self.loader = loader
     }
     
-    func refresh() {
-        refresh(type: .initial)
-    }
-    
     func reload() {
-        refresh(type: .random)
+        refresh()
     }
     
-    private func refresh(type: LocationType) {
-        loader.loadWeatherFor(locationType: type) { [weak self] result in
+    private func refresh() {
+        loader.loadWeather { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .success(let weather):

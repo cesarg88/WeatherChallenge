@@ -33,15 +33,15 @@ public final class Presenter: PresenterProtocol {
     }
     
     public func viewDidLoadAction() {
-        loadWeatherForLocation(type: .initial)
+        loadWeatherForLocation()
     }
         
     public func reloadAction() {
-        loadWeatherForLocation(type: .random)
+        loadWeatherForLocation()
     }
     
-    private func loadWeatherForLocation(type: LocationType) {
-        loader.loadWeatherFor(locationType: type) { [weak self] result in
+    private func loadWeatherForLocation() {
+        loader.loadWeather { [weak self] result in
             guard let self = self else { return }
             switch result {
                 case .success(let weather):

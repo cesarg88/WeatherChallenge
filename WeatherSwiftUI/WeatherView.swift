@@ -73,7 +73,7 @@ struct WeatherView: View {
                     }
                     Spacer()
                 }.onAppear(perform: {
-                    viewModel.refresh()
+                    viewModel.reload()
                 })
                 .padding()
                 

@@ -34,8 +34,8 @@ final class MainQueueDispatchDecorator: WeatherLoader {
         self.decoratee = decoratee
     }
     
-    func loadWeatherFor(locationType: LocationType, completion: @escaping (WeatherLoader.Result) -> Void) {
-        decoratee.loadWeatherFor(locationType: locationType) { result in
+    func loadWeather(completion: @escaping (WeatherLoader.Result) -> Void) {
+        decoratee.loadWeather { result in
             guaranteeMainThread {
                 completion(result)
             }

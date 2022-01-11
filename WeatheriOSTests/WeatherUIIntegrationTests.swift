@@ -25,18 +25,6 @@ final class WeatherUIIntegrationTests: XCTestCase {
         XCTAssertEqual(loader.loadCallCount, 3, "Expected yet another loading request once user initiates another reload")
     }
     
-    func test_viewDidLoad_shouldLoadWeatherFromClientWithCorrectLocationType() {
-           let (sut, loader) = makeSUT()
-           sut.loadViewIfNeeded()
-           XCTAssertTrue(loader.locationType == .initial)
-       }
-       
-       func test_changeLocation_shouldLoadWeatherFromClientWithCorrectLocationType() {
-           let (sut, loader) = makeSUT()
-           sut.simulateButtonAction()
-           XCTAssertTrue(loader.locationType == .random)
-       }
-    
     func test_loadWeatherCompletion_dispatchesFromBackgroundToMainThread() {
             let (sut, loader) = makeSUT()
             sut.loadViewIfNeeded()
@@ -131,12 +119,8 @@ final class WeatherUIIntegrationTests: XCTestCase {
         var loadCallCount: Int {
             return weatherRequests.count
         }
-        
-        var locationType: LocationType?
-        
-        
-        func loadWeatherFor(locationType: LocationType, completion: @escaping (WeatherLoader.Result) -> Void) {
-            self.locationType = locationType
+                
+        func loadWeather(completion: @escaping (WeatherLoader.Result) -> Void) {
             weatherRequests.append(completion)
         }
         
