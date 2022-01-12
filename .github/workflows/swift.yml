@@ -13,7 +13,7 @@ jobs:
     - name: Repository checkout
       uses: actions/checkout@v2
     - name: Build for macOS
-      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build-for-testing -scheme WeatherChallengeTests -destination "platform=macosx,OS=latest | xcpretty
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build-for-testing -scheme WeatherChallengeTests -destination "platform=macosx,OS=latest" | xcpretty
     - name: Run macOS tests
       run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild test-without-building -scheme WeatherChallengeTests -destination "platform=macosx,OS=latest" | xcpretty
     - name: Build for iOS
