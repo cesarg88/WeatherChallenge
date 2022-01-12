@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3358F1A7278F3D4700ED4B72 /* WeatherChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339090242779E098007D2864 /* WeatherChallenge.framework */; };
 		336BF39F277B1DEE00FA1484 /* LocationURLCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336BF39E277B1DEE00FA1484 /* LocationURLCreator.swift */; };
 		338540B2277C6EBA009C78E6 /* Composer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338540B1277C6EBA009C78E6 /* Composer.swift */; };
-		3390902D2779E099007D2864 /* WeatherChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 339090242779E098007D2864 /* WeatherChallenge.framework */; };
 		339090332779E099007D2864 /* WeatherChallenge.h in Headers */ = {isa = PBXBuildFile; fileRef = 339090272779E098007D2864 /* WeatherChallenge.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3390903E2779E13B007D2864 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3390903D2779E13B007D2864 /* HTTPClient.swift */; };
 		339090412779E7F4007D2864 /* RemoteWeatherLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339090402779E7F4007D2864 /* RemoteWeatherLoader.swift */; };
@@ -125,7 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3390902D2779E099007D2864 /* WeatherChallenge.framework in Frameworks */,
+				3358F1A7278F3D4700ED4B72 /* WeatherChallenge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,7 +618,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -677,7 +678,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -710,6 +712,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = es.cesar.WeatherChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -741,6 +744,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = es.cesar.WeatherChallenge;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -764,6 +768,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = es.cesar.WeatherChallengeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -786,6 +791,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = es.cesar.WeatherChallengeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
