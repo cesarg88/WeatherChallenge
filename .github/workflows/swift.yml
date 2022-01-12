@@ -12,8 +12,8 @@ jobs:
     steps:
     - name: Repository checkout
       uses: actions/checkout@v2
-    - name: Run for macOS
-      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild test -project WeatherChallenge.xcodeproj -scheme "WeatherChallengeTests" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES | xcpretty
+    #- name: Run for macOS
+    #  run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild test -project WeatherChallenge.xcodeproj -scheme "WeatherChallengeTests" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk macosx -destination "platform=macOS" ONLY_ACTIVE_ARCH=YES | xcpretty
     - name: Build for iOS
-      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild clean build test -project WeatherChallenge.xcodeproj -scheme "WeatheriOSTests" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator -destination "platform=iOS Simulator,OS=15.0,name=iPhone 13 PRO" ONLY_ACTIVE_ARCH=YES | xcpretty
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild test -project WeatherChallenge.xcodeproj -scheme "WeatheriOSTests" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO -sdk iphonesimulator ONLY_ACTIVE_ARCH=YES | xcpretty
 
