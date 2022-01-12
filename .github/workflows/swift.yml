@@ -5,15 +5,21 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ develop ]
-
+    
 jobs:
-  build:
-
+  unit_tests:
     runs-on: macos-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Build
-      run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - name: Repository checkout
+      uses: actions/checkout@v2
+    - name: Lint
+      run: swiftlint
+    - name: Build for macOS
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build-for-testing -scheme WeatherChallengeTests -destination "platform=macosx,OS=latest | xcpretty
+    - name: Run macOS tests
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild test-without-building -scheme WeatherChallengeTests -destination "platform=macosx,OS=latest" | xcpretty
+    - name: Build for iOS
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild build-for-testing -scheme WeatheriOSTests -destination "platform=iOS Simulator,OS=latest,name=iPhone 12" | xcpretty
+    - name: Run iOS tests
+      run: set -o pipefail && env NSUnbufferedIO=YES xcodebuild test-without-building -scheme WeatheriOSTests -destination "platform=iOS Simulator,OS=latest,name=iPhone 12" | xcpretty
+
